@@ -1,0 +1,33 @@
+// Simple service worker for offline support and PWA installability
+const CACHE_NAME = 'sravans-cache-v1';
+const OFFLINE_URL = '/';
+
+const CORE_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icons/icon.svg'
+];
+
+// Install: pre-cache the core assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS))
+  );
+  self.skipWaiting();
+});
+
+// Activate
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+// Fetch: serve from cache, then network
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResp => {
+      if (cachedResp) return cachedResp;
+      return fetch(event.request).catch(() => caches.match(OFFLINE_URL));
+    })
+  );
+});
