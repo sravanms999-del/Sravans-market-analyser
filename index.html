@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="manifest" href="/manifest.json">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,6 +21,16 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(function(reg){
+      // Registered
+      console.log('SW registered', reg);
+    }).catch(function(err){
+      console.warn('SW registration failed', err);
+    });
+  }
+  </script>
 <body class="min-h-screen p-4 flex flex-col items-center">
   <div class="w-full max-w-3xl bg-neutral-900 rounded-2xl shadow-lg p-6 mt-6">
     <h1 class="text-3xl font-bold gold text-center mb-2">🕉️ Sravans Market Analyser</h1>
