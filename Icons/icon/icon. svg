@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="48" fill="none"/>
+  <!-- Transparent background; saffron-gold triangle -->
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff9933"/>
+      <stop offset="1" stop-color="#ffd86b"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- outer area (transparent) -->
+  <!-- saffron triangle -->
+  <g transform="translate(0,12)">
+    <polygon points="256,48 464,416 48,416" fill="url(#g)" filter="url(#glow)" stroke="#f4c542" stroke-width="6"/>
+    <!-- lotus petals: subtle bright-gold outline -->
+    <path d="M256 130 C220 120 180 140 160 180 C200 170 240 200 256 230 C272 200 312 170 352 180 C332 140 292 120 256 130 Z" fill="none" stroke="#ffd86b" stroke-width="4" opacity="0.95"/>
+    <path d="M256 160 C240 156 220 170 208 190 C232 186 248 200 256 214 C264 200 280 186 304 190 C292 170 272 156 256 160 Z" fill="none" stroke="#ffd86b" stroke-width="3" opacity="0.95"/>
+    <!-- black eye -->
+    <ellipse cx="256" cy="230" rx="32" ry="22" fill="#000"/>
+    <circle cx="256" cy="230" r="10" fill="#ffd86b"/>
+  </g>
+</svg>
